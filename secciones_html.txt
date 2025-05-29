@@ -1,0 +1,116 @@
+*********-----------***************
+""" seccion imagenes en horizontal"""
+
+<section class="galeria-horizontal">
+  <div class="container-horizontal">
+    <img src="foto1.jpg" alt="Stand 1">
+    <img src="foto2.jpg" alt="Stand 2">
+    <img src="foto3.jpg" alt="Stand 3">
+    <img src="foto4.jpg" alt="Stand 4">
+  </div>
+</section>
+
+css3
+.galeria-horizontal .container-horizontal {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.galeria-horizontal img {
+  width: 22%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+**********--------------*************
+
+""" carrusel de fotos """
+
+<section class="carrusel">
+  <div class="carrusel-container">
+    <div class="slide"><img src="foto1.jpg" alt="Stand 1"></div>
+    <div class="slide"><img src="foto2.jpg" alt="Stand 2"></div>
+    <div class="slide"><img src="foto3.jpg" alt="Stand 3"></div>
+  </div>
+</section>
+
+css3
+.carrusel {
+  width: 100%;
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+.carrusel-container {
+  display: flex;
+  width: 300%;
+  animation: scroll 12s infinite linear;
+}
+
+.slide {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0%); }
+  33%  { transform: translateX(-100%); }
+  66%  { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
+
+**********------------******************
+""" una sola foto / imagen *****
+<img src="foto1.jpg" alt="Ejemplo de stand" class="imagen-seccion" />
+
+css3
+.imagen-seccion {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-seccion:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+*************--------------***************
+
+""" flex box """
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espacio entre texto e imagen */
+  flex-wrap: wrap; /* para que se acomode en pantallas pequeñas */
+}
+
+.horizontal .texto {
+  flex: 1;
+  min-width: 250px;
+}
+
+.horizontal .imagen img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-height: 250px; /* ajusta según necesites */
+}
+
+*************------------------****************
