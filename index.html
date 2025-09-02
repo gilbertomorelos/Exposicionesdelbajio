@@ -1,112 +1,521 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EXPOSICIONES DEL BAJIO | RENTA DE STANDS</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0077cc;
+      --secondary: #0055a4;
+      --accent: #ff6b00;
+      --light: #f8f9fa;
+      --dark: #1a1a1a;
+      --gray: #6c757d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('foto23.jpg') center/cover no-repeat;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    header .logo {
+      width: 180px;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .slogan_logo {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .slogan {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #f8f8f8;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    section {
+      background-color: white;
+      margin: 2rem 0;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    section h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 1.5rem 0;
+    }
+
+    ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "✔";
+      color: var(--primary);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    .boton-whatsapp {
+    position: fixed;      /* Para que quede flotando */
+    bottom: 15px;         /* Separación desde el fondo */
+    right: 15px;          /* Separación desde la derecha */
+    display: flex;        /* Para alinear ícono y texto */
+    align-items: center;
+    gap: 8px;             /* Espacio entre ícono y texto */
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+    }
+
+    .boton-whatsapp:hover {
+      background-color: #1ebe5c;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+    }
+
+    .boton-whatsapp i {
+      margin-right: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--dark);
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mejoras para el carrusel */
+    .carrusel {
+      width: 100%;
+      overflow: hidden;
+      margin: 30px 0;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .carrusel-container {
+      display: flex;
+      width: 300%;
+      animation: scroll 25s infinite linear;
+    }
+
+    .slide {
+      width: 33.333%;
+      flex-shrink: 0;
+      padding: 10px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .slide img:hover {
+      transform: scale(1.02);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0%); }
+      33.333% { transform: translateX(-33.333%); }
+      66.666% { transform: translateX(-66.666%); }
+      100% { transform: translateX(0%); }
+    }
+
+    /* Estilos para la sección horizontal */
+    .horizontal {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .horizontal .texto {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .horizontal .imagen {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .horizontal .imagen img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .horizontal .imagen img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Servicios destacados */
+    .servicios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .servicio {
+      background: var(--light);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .servicio:hover {
+      transform: translateY(-5px);
+    }
+
+    .servicio i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .servicio h3 {
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    /* Testimonios */
+    .testimonios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .testimonio {
+      background: var(--light);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    .testimonio::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.2;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      line-height: 1;
+    }
+
+    .testimonio p {
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .testimonio .cliente {
+      font-weight: bold;
+      color: var(--secondary);
+      text-align: right;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .horizontal {
+        flex-direction: column;
+      }
+
+      .carrusel-container {
+        width: 500%;
+      }
+
+      .slide {
+        width: 20%;
+      }
+
+      section {
+        padding: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    /* Nav simple */
+    nav {
+      background: var(--primary);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+  </style>
 </head>
+
 <body>
   <header>
-    <div class="container">
+    <div class="container header-content">
       <img src="logo_lalo.jpg" alt="Exposiciones del Bajio" class="logo" />
       <h1>Exposiciones del Bajio</h1>
-      <p class="slogan_logo">Renta de Stands.</p>
-      <h1></h1>
-      <p class="slogan">Stands para tus exposiciones , tu mejor opción.</p>
-<section class="carrusel">
-  <div class="carrusel-container">
-    <div class="slide"><img src="foto1.jpg" alt="Stand 1"></div>
-    <div class="slide"><img src="foto2.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto3.jpg" alt="Stand 3"></div>
-    <div class="slide"><img src="foto4.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto5.jpg" alt="Stand 3"></div>
-  </div>
-</section>
-
+      <p class="slogan_logo">Renta de Stands Profesionales</p>
+      <p class="slogan">Tu mejor opción para stands de exposición de alta calidad</p>
     </div>
   </header>
 
-  <section class="intro">
+  <nav>
     <div class="container">
-      <h2>¿Qué ofrecemos?</h2>
-      <p>Somos especialistas en montajes de Stands de aluminio anodizado con  mamparas blanca .</p>
-      <p>Contamos con diseño para la impresion de tus materiales artísticos .</p>
-      <ul>
-        <li>✔️ Respuestas inmediatas</li>
-        <li>✔️ Montajes personalizados</li>
-        <li>✔️ Precios competitivos</li>
-        <li>✔️ Atencion profesional</li>
-      </ul>
-<section class="carrusel">
-  <div class="carrusel-container">
-    <div class="slide"><img src="foto5.jpg" alt="Stand 1"></div>
-    <div class="slide"><img src="foto6.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto7.jpg" alt="Stand 3"></div>
-    <div class="slide"><img src="foto8.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto9.jpg" alt="Stand 3"></div>
-  </div>
-</section>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#stands">Nuestros Stands</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
 
-    </div>
-  </section>
-<section class="segmentos">
-  <div class="container horizontal">
-    <div class="texto">
-      <h2>Nuetros Stands</h2>
-      <p>Tenemos Stands modulares:</p>
-      <ul>
-        <li>2 x 2 , 3 x 2 , 3 x 3 , 6 x 3 </li>
-        <li>Camerinos, Vestidores</li>
-        <li>Montaje de acuerdo a tus necesidades</li>
-        <li>Contáctanos.</li>
-      </ul>
-    </div>
-    <div class="imagen">
-      <img src="foto13.jpg" alt="Stands de ejemplo" />
-    </div>
-  </div>
-</section>
-
-  <section class="segmentos">
+  <section id="inicio">
     <div class="container">
-      <h2>Nuetros Clientes </h2>
-      <p>Tenemos clientes en toda la Republica Mexicana:</p>
-      <ul>
-        <li>Stand Custom</li>
-        <li>Esuelas , Institutos</li>
-        <li>Gobierno</li>
-        <li>Solo faltas tu, contactanos.</li>
-      </ul>
-<section class="carrusel">
-  <div class="carrusel-container">
-    <div class="slide"><img src="foto15.jpg" alt="Stand 1"></div>
-    <div class="slide"><img src="foto16.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto17.jpg" alt="Stand 3"></div>
-    <div class="slide"><img src="foto18.jpg" alt="Stand 2"></div>
-    <div class="slide"><img src="foto19.jpg" alt="Stand 3"></div>
-  </div>
-</section>
+      <h2>Bienvenido a Exposiciones del Bajío</h2>
+      <p>Somos especialistas en montaje de stands de aluminio anodizado con mamparas blancas, ofreciendo soluciones profesionales para ferias, exposiciones y eventos corporativos.</p>
 
+      <div class="carrusel">
+        <div class="carrusel-container">
+          <div class="slide"><img src="foto22.jpg" alt="Stand 1"></div>
+          <div class="slide"><img src="foto23.jpg" alt="Stand 2"></div>
+          <div class="slide"><img src="foto24.jpg" alt="Stand 3"></div>
+          <div class="slide"><img src="foto4.jpg" alt="Stand 4"></div>
+          <div class="slide"><img src="foto5.jpg" alt="Stand 5"></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="contacto">
+  <section id="servicios">
+    <div class="container">
+      <h2>¿Qué Ofrecemos?</h2>
+      <p>Nuestros servicios integrales para hacer de tu stand un espacio exitoso:</p>
+
+      <div class="servicios">
+        <div class="servicio">
+          <i class="fas fa-pencil-ruler"></i>
+          <h3>Diseño Personalizado</h3>
+          <p>Creación de stands adaptados a tu marca y necesidades</p>
+        </div>
+        <div class="servicio">
+          <i class="fas fa-tools"></i>
+          <h3>Montaje Profesional</h3>
+          <p>Instalación por personal especializado en el lugar del evento</p>
+        </div>
+        <div class="servicio">
+          <i class="fas fa-print"></i>
+          <h3>Impresión de Materiales</h3>
+          <p>Diseño e impresión de gráficos para tus stands</p>
+        </div>
+        <div class="servicio">
+          <i class="fas fa-truck"></i>
+          <h3>Transporte y Logística</h3>
+          <p>Gestión completa del transporte de tus stands</p>
+        </div>
+      </div>
+
+      <div class="carrusel">
+        <div class="carrusel-container">
+          <div class="slide"><img src="foto5.jpg" alt="Stand 5"></div>
+          <div class="slide"><img src="foto6.jpg" alt="Stand 6"></div>
+          <div class="slide"><img src="foto7.jpg" alt="Stand 7"></div>
+          <div class="slide"><img src="foto8.jpg" alt="Stand 8"></div>
+          <div class="slide"><img src="foto9.jpg" alt="Stand 9"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stands">
+    <div class="container horizontal">
+      <div class="texto">
+        <h2>Nuestros Stands</h2>
+        <p>Contamos con una amplia variedad de stands modulares adaptables a cualquier espacio:</p>
+        <ul>
+          <li>Stands de 2x2, 3x2, 3x3 y 6x3 metros</li>
+          <li>Camerinos y vestidores incorporables</li>
+          <li>Múltiples configuraciones según tus necesidades</li>
+          <li>Diseños personalizados para tu marca</li>
+          <li>Materiales de alta calidad y durabilidad</li>
+        </ul>
+        <p>¡Contáctanos para diseñar el stand perfecto para tu próximo evento!</p>
+      </div>
+      <div class="imagen">
+        <img src="foto13.jpg" alt="Stands de ejemplo" />
+      </div>
+    </div>
+  </section>
+
+  <section id="clientes">
+    <div class="container">
+      <h2>Nuestros Clientes</h2>
+      <p>Hemos trabajado con una amplia variedad de clientes en toda la República Mexicana:</p>
+
+      <div class="testimonios">
+        <div class="testimonio">
+          <p>"Excelente servicio y calidad en sus stands. Nos ayudaron a destacar en la feria industrial."</p>
+          <div class="cliente">- Empresa Manufacturing Solutions</div>
+        </div>
+        <div class="testimonio">
+          <p>"Muy profesionales y cumplidos. El stand quedó exactamente como lo habíamos planeado."</p>
+          <div class="cliente">- Universidad Tecnológica de León</div>
+        </div>
+        <div class="testimonio">
+          <p>"La mejor relación calidad-precio que encontramos. Repetiremos en nuestros próximos eventos."</p>
+          <div class="cliente">- Gobierno del Estado de Guanajuato</div>
+        </div>
+      </div>
+
+      <div class="carrusel">
+        <div class="carrusel-container">
+          <div class="slide"><img src="foto15.jpg" alt="Cliente 1"></div>
+          <div class="slide"><img src="foto16.jpg" alt="Cliente 2"></div>
+          <div class="slide"><img src="foto17.jpg" alt="Cliente 3"></div>
+          <div class="slide"><img src="foto18.jpg" alt="Cliente 4"></div>
+          <div class="slide"><img src="foto19.jpg" alt="Cliente 5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto">
     <div class="container">
       <h2>Contáctanos</h2>
-      <p>Resolvemos tus dudas y hacemos una demo gratis para tu negocio.</p>
-      <a href="https://wa.me/5214422813759" class="boton-whatsapp">Escríbenos por WhatsApp</a>
+      <p>Resolvemos tus dudas y te proporcionamos una cotización sin compromiso para tu próximo evento.</p>
+      <a href="https://wa.me/5214422813759" class="boton-whatsapp">
+        <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+      </a>
+      <p style="margin-top: 20px;">O si prefieres, llámanos al: <strong>442 281 3759</strong></p>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Scrap Marketing IT · Chatbots / Web / Marketing IT /Todos los derechos reservados</p>
-      <p>Síguenos en <a href="https://www.facebook.com/share/1CjK5oPSoA/?mibextid=wwXIfr">Facebook</a></p>
+      <p>&copy; 2025 Exposiciones del Bajío · Renta de Stands Profesionales · Todos los derechos reservados</p>
+      <p>Síguenos en <a href="https://www.facebook.com/share/1CjK5oPSoA/?mibextid=wwXIfr">Facebook</a> para ver nuestros trabajos recientes</p>
+      <p>Diseñado con ❤️ por Scrap Marketing IT</p>
+      <p>
+      <a href="https://wa.me/524421697170" target="_blank" class="designer-footer-btn">
+        <i class="fab fa-whatsapp"></i> Contactar al diseñador
+      </a>
+</p>
+
     </div>
   </footer>
 </body>
 </html>
-
